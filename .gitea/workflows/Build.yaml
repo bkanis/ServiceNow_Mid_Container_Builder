@@ -1,19 +1,20 @@
 name: Gitea Actions Demo
-run-name: ${{ gitea.actor }} is testing out Gitea Actions 🚀
-on: [push]
+
+on:
+  push:
+    branches: [main]
 
 jobs:
-  Explore-Gitea-Actions:
-    runs-on: ubuntu-latest
+  deploy:
     steps:
-      - run: echo "🎉 The job was automatically triggered by a ${{ gitea.event_name }} event."
-      - run: echo "🐧 This job is now running on a ${{ runner.os }} server hosted by Gitea!"
-      - run: echo "🔎 The name of your branch is ${{ gitea.ref }} and your repository is ${{ gitea.repository }}."
-      - name: Check out repository code
-        uses: actions/checkout@v3
-      - run: echo "💡 The ${{ gitea.repository }} repository has been cloned to the runner."
-      - run: echo "🖥️ The workflow is now ready to test your code on the runner."
-      - name: List files in the repository
+      - name: Get Zip
         run: |
-          ls ${{ gitea.workspace }}
-      - run: echo "🍏 This job's status is ${{ job.status }}."
+          ZIP=https://install.service-now.com/glide/distribution/builds/package/app-signed/mid-linux-container-recipe/2022/09/16/mid-linux-container-recipe.tokyo-07-08-2022__patch1-09-01-2022_09-16-2022_1610.linux.x86-64.zip
+          wget -c $ZIP -O ./build.zip
+          unzip -o ./build.zip
+
+      - name: Docker Build and Push
+        run: |
+          buildver=$(echo $ZIP | sed 's/^.*container-recipe.\(.*\).linux.*zip$/\1/')
+          echo "Building $buildver"
+          docker buildx build --build-arg version=$buildver -t gitea.kanis.dev/bkanis/snc_mid_server_docker:$buildver -t gitea.kanis.dev/bkanis/snc_mid_server_docker:latest --platform linux/amd64 --push .
