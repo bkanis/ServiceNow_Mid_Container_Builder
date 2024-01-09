@@ -20,7 +20,7 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        
+
       - name: Get Zip
         run: |
           ZIP=https://install.service-now.com/glide/distribution/builds/package/app-signed/mid-linux-container-recipe/2022/09/16/mid-linux-container-recipe.tokyo-07-08-2022__patch1-09-01-2022_09-16-2022_1610.linux.x86-64.zip
@@ -60,11 +60,10 @@ jobs:
           username: ${{ gitea.repository_owner }}
           password: ${{ secrets.REGISTRY_PASS  }}
 
-      - name: Build and push
+      - name: Build and Push to Registry
         uses: docker/build-push-action@v5
         with:
-          context: ./Dockerfile
+          context: .
           push: ${{ gitea.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          cache-from: type=registry,ref=${{ gitea.repository }}:latest
