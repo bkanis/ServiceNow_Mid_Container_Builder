@@ -16,16 +16,18 @@ on:
 
 jobs:
   docker:
-    runs-on: ubuntu-latest
+    runs-on: bookworm
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        
       - name: Get Zip
         run: |
           ZIP=https://install.service-now.com/glide/distribution/builds/package/app-signed/mid-linux-container-recipe/2022/09/16/mid-linux-container-recipe.tokyo-07-08-2022__patch1-09-01-2022_09-16-2022_1610.linux.x86-64.zip
           wget -c $ZIP -O ./build.zip
           unzip -o ./build.zip
           rm ./build.zip
+
       - name: Docker meta
         id: meta
         uses: docker/metadata-action@v4
@@ -44,16 +46,20 @@ jobs:
             type=sha
             # set latest tag for default branch
             type=raw,value=latest,enable={{is_default_branch}}
+
       # - name: Set up QEMU
       #   uses: docker/setup-qemu-action@v3
+
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v3
+
       - name: Login to Registry
         uses: docker/login-action@v2
         with:
           registry: gitea.kanis.dev
           username: ${{ gitea.repository_owner }}
           password: ${{ secrets.REGISTRY_PASS  }}
+
       - name: Build and push
         uses: docker/build-push-action@v5
         with:
@@ -62,6 +68,3 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=registry,ref=${{ gitea.repository }}:latest
-      - name: Inspect
-        run: |
-          docker buildx imagetools inspect gitea.kanis.dev/${{ gitea.repository }}:latest  
