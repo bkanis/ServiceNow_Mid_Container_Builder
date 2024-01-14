@@ -1,9 +1,9 @@
 name: ServiceNow Mid Server Docker Build
 
 on:
-  release:
-    types: [published]
-
+  create:
+    tags:        
+      - '**'
 jobs:
   build-deploy:
     runs-on: bookworm
