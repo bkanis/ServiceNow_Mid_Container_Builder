@@ -25,7 +25,7 @@ jobs:
 
       - name: Get Zip
         run: |
-          ZIP=https://install.service-now.com/glide/distribution/builds/package/app-signed/mid-linux-container-recipe/2022/09/16/mid-linux-container-recipe.tokyo-07-08-2022__patch1-09-01-2022_09-16-2022_1610.linux.x86-64.zip
+          ZIP=https://install.service-now.com/glide/distribution/builds/package/app-signed/mid-linux-container-recipe/2023/10/10/mid-linux-container-recipe.utah-12-21-2022__patch7a-09-28-2023_10-10-2023_1258.linux.x86-64.zip
           wget -c $ZIP -O ./build.zip
           unzip -o ./build.zip
           rm ./build.zip
