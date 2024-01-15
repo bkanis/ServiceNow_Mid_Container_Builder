@@ -25,6 +25,7 @@ jobs:
 
       - name: Get Zip
         run: |
+          echo "Tag name from github.ref_name: ${{  github.ref_name }}"
           ZIP=https://install.service-now.com/glide/distribution/builds/package/app-signed/mid-linux-container-recipe/2023/10/10/mid-linux-container-recipe.utah-12-21-2022__patch7a-09-28-2023_10-10-2023_1258.linux.x86-64.zip
           wget -c $ZIP -O ./build.zip
           unzip -o ./build.zip
@@ -42,7 +43,7 @@ jobs:
 
       - name: Docker Metadata
         id: meta
-        uses: docker/metadata-action@v4
+        uses: docker/metadata-action@v5
         with:
           # list of Docker images to use as base name for tags
           images: |
