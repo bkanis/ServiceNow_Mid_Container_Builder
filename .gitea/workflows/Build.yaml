@@ -8,7 +8,7 @@ on:
    branches:
     - 'main' 
    paths:
-    - './gitea/workflows/Build.yaml'
+    - '.gitea/workflows/Build.yaml'
 jobs:
   build-deploy:
     runs-on: bookworm
@@ -16,7 +16,7 @@ jobs:
       - name: Install Docker
         run: |
           apt-get update -qq >/dev/null
-          DEBIAN_FRONTEND=noninteractive apt-get install -y -qq nslookup apt-transport-https ca-certificates curl >/dev/null
+          DEBIAN_FRONTEND=noninteractive apt-get install -y -qq dnsutils apt-transport-https ca-certificates curl >/dev/null
           install -m 0755 -d /etc/apt/keyrings
           curl -fsSL "https://download.docker.com/linux/debian/gpg" | gpg --dearmor --yes -o /etc/apt/keyrings/docker.gpg
           chmod a+r /etc/apt/keyrings/docker.gpg
