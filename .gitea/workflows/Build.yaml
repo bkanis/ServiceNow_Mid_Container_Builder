@@ -32,8 +32,7 @@ jobs:
       - name: Get Zip
         run: |
           echo "Tag name from gitea.ref_name: ${{  gitea.ref_name }}"
-          ZIP=${{  gitea.install_url }}
-          wget -c $ZIP -O ./build.zip
+          wget -c ${{vars.INSTALL_URL}} -O ./build.zip
           unzip -o ./build.zip
           rm ./build.zip
 
