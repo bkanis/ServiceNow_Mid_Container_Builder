@@ -50,7 +50,7 @@ jobs:
         with:
           # list of Docker images to use as base name for tags
           images: |
-            127.0.0.1:3000/${{ gitea.repository }}
+            gitea.kanis.local:3000/${{ gitea.repository }}
           # gitea.kanis.local/${{ gitea.repository }}
           # gitea.kanis.dev/${{ gitea.repository }}
           # generate Docker tags based on the following events/attributes
