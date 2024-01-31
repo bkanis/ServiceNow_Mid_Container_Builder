@@ -8,9 +8,6 @@ jobs:
   build-deploy:
     runs-on: bookworm
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
       - name: Install Docker
         run: |
           apt-get update -qq >/dev/null
@@ -22,6 +19,9 @@ jobs:
           apt-get update -qq >/dev/null
           DEBIAN_FRONTEND=noninteractive apt-get install -y -qq docker-ce docker-ce-cli containerd.io docker-compose-plugin docker-ce-rootless-extras docker-buildx-plugin >/dev/null
           docker version
+
+      - name: Checkout
+        uses: actions/checkout@v4
 
       - name: Get Zip
         run: |
