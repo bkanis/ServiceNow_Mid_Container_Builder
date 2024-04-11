@@ -1,14 +1,16 @@
 name: ServiceNow Mid Server Docker Build
 
 on:
+  release:
+    types: [published]
   create:
     tags:        
       - '**'
-  push:
-   branches:
-    - 'main' 
-   paths:
-    - '.gitea/workflows/Build.yaml'
+  # push:
+  #  branches:
+  #   - 'main' 
+  #  paths:
+  #   - '.gitea/workflows/Build.yaml'
 
 jobs:
   build-deploy:
@@ -79,8 +81,6 @@ jobs:
           context: .
           push: ${{ gitea.event_name != 'pull_request' }}
           tags: ${{ steps.meta.outputs.tags }}
-          # tags: 192.168.15.245:3000/bkanis/snc_mid_server:latest
-
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=registry,ref=${{ gitea.repository }}:latest
           cache-to: type=inline
