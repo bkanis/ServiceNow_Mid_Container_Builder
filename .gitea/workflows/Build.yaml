@@ -55,7 +55,7 @@ jobs:
         with:
           # list of Docker images to use as base name for tags
           images: |
-            192.168.15.245:3000/${{ gitea.repository }}
+            http://192.168.15.245:3000/${{ gitea.repository }}
           # generate Docker tags based on the following events/attributes
           tags: |
             type=schedule
