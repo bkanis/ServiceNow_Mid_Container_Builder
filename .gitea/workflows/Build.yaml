@@ -75,7 +75,7 @@ jobs:
             # set latest tag for default branch
             type=raw,value=latest,enable={{is_default_branch}}
             # 
-            type=raw,value=${{ gitea.GITEA_REF }}
+            type=raw,value="${{ gitea.GITEA_REF }}"
 
       - name: Build and Push to Registry
         uses: docker/build-push-action@v5
