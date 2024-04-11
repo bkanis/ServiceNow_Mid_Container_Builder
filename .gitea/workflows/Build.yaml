@@ -3,9 +3,9 @@ name: ServiceNow Mid Server Docker Build
 on:
   release:
     types: [published]
-  create:
-    tags:        
-      - '**'
+  # create:
+  #   tags:        
+  #     - '**'
   # push:
   #  branches:
   #   - 'main' 
@@ -74,6 +74,8 @@ jobs:
             type=sha
             # set latest tag for default branch
             type=raw,value=latest,enable={{is_default_branch}}
+            # 
+            type=raw,value=${{ gitea.GITEA_REF }}
 
       - name: Build and Push to Registry
         uses: docker/build-push-action@v5
