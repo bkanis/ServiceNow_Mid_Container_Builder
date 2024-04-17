@@ -20,7 +20,7 @@ jobs:
       - name: GitHub Tag Name example
         run: |
           echo "Tag name from GITEA_REF_NAME: $GITEA_REF_NAME"
-          echo "Tag name from GITEA.ref_name: ${{  gitea.ref_name }}"
+          echo "${{  gitea.ref_name }}": ${{  gitea.ref_name }}"
 
       - name: Install Docker
         run: |
@@ -80,8 +80,6 @@ jobs:
             type=sha
             # set latest tag for default branch
             type=raw,value=latest,enable={{is_default_branch}}
-            # 
-            type=raw,value="${{ gitea.GITEA_REF }}"
 
       - name: Build and Push to Registry
         uses: docker/build-push-action@v5
