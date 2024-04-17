@@ -86,3 +86,14 @@ jobs:
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=registry,ref=${{ gitea.repository }}:latest
           cache-to: type=inline
+
+      - name: Export image to tar.gz
+        run: |
+          docker export --output="latest.tar" ${{ gitea.repository }}
+          gzip latest.tar
+      
+      - name: Export Artifact
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            latest.tar.gz
