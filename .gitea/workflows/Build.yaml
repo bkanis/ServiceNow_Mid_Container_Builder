@@ -16,11 +16,6 @@ jobs:
   registry-build:
     runs-on: bookworm
     steps:
-
-      - name: Get Refname
-        env:
-          REFNAME : ${{  gitea.ref_name }}"
-
       - name: Install Docker
         run: |
           apt-get update -qq >/dev/null
