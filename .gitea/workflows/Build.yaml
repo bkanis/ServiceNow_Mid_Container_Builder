@@ -1,4 +1,4 @@
-name: ServiceNow Mid Server Docker Build
+name: Build
 
 on:
   release:
@@ -16,6 +16,12 @@ jobs:
   registry-build:
     runs-on: bookworm
     steps:
+
+      - name: GitHub Tag Name example
+       run: |
+         echo "Tag name from GITEA_REF_NAME: $GITEA_REF_NAME"
+         echo "Tag name from GITEA.ref_name: ${{  gitea.ref_name }}"
+
       - name: Install Docker
         run: |
           apt-get update -qq >/dev/null
@@ -33,7 +39,7 @@ jobs:
 
       - name: Get Zip
         run: |
-          echo "Tag name from gitea.ref_name: ${{  gitea.ref_name }}"
+          echo "Tag name from gitea.ref_name: ${{ gitea.ref_name }}"
           wget -c ${{vars.INSTALL_URL}} -O ./build.zip
           unzip -o ./build.zip
           rm ./build.zip
