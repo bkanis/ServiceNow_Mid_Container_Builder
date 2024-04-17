@@ -36,9 +36,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Get Zip
+      - name: Get Zip (URL)
+        if: ${{ ! gitea.ref_name }}
         run: |
-          echo "Tag name from gitea.ref_name: ${{ gitea.ref_name }}"
+          wget -c ${{vars.INSTALL_URL}} -O ./build.zip
+          unzip -o ./build.zip
+          rm ./build.zip
+      
+      - name: Get Zip (Tag)
+        if: ${{  gitea.ref_name }}
+        run: |
           wget -c ${{vars.INSTALL_URL}} -O ./build.zip
           unzip -o ./build.zip
           rm ./build.zip
