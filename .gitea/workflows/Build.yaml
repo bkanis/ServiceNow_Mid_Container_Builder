@@ -9,8 +9,8 @@ on:
   push:
    branches:
     - 'main'
-  #  paths:
-  #   - '.gitea/workflows/Build.yaml'
+   paths:
+    - '.gitea/workflows/Build.yaml'
 
 jobs:
   registry-build:
@@ -89,7 +89,7 @@ jobs:
 
       - name: Export image to tar.gz
         run: |
-          docker export --output="latest.tar" ${{ gitea.repository }}
+          docker export --output="latest.tar" ${{ gitea.repository }}:latest
           gzip latest.tar
       
       - name: Export Artifact
