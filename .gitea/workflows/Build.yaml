@@ -18,9 +18,9 @@ jobs:
     steps:
 
       - name: GitHub Tag Name example
-       run: |
-         echo "Tag name from GITEA_REF_NAME: $GITEA_REF_NAME"
-         echo "Tag name from GITEA.ref_name: ${{  gitea.ref_name }}"
+        run: |
+          echo "Tag name from GITEA_REF_NAME: $GITEA_REF_NAME"
+          echo "Tag name from GITEA.ref_name: ${{  gitea.ref_name }}"
 
       - name: Install Docker
         run: |
