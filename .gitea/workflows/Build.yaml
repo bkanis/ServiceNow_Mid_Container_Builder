@@ -3,17 +3,17 @@ name: ServiceNow Mid Server Docker Build
 on:
   release:
     types: [published]
-  # create:
-  #   tags:        
-  #     - '**'
-  # push:
-  #  branches:
-  #   - 'main' 
+  create:
+    tags:        
+      - '**'
+  push:
+   branches:
+    - 'main'
   #  paths:
   #   - '.gitea/workflows/Build.yaml'
 
 jobs:
-  build-deploy:
+  registry-build:
     runs-on: bookworm
     steps:
       - name: Install Docker
