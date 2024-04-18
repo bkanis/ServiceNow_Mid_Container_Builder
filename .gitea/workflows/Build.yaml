@@ -97,7 +97,7 @@ jobs:
 
       - name: Export image to tar.gz
         run: |
-          docker export --output="latest.tar" ${{vars.REGISTRY_URL}}/${{ gitea.repository }}:latest
+          docker image save -o latest.tar ${{vars.REGISTRY_URL}}/${{ gitea.repository }}:latest
           gzip latest.tar
       
       - name: Export Artifact
