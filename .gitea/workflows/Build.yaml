@@ -21,7 +21,7 @@ jobs:
       - name: Install Docker
         run: |
           apt-get update -qq >/dev/null
-          DEBIAN_FRONTEND=noninteractive apt-get install -y -qq apt-transport-https ca-certificates curl >/dev/null
+          DEBIAN_FRONTEND=noninteractive apt-get install -y -qq gpg apt-transport-https ca-certificates curl >/dev/null
           install -m 0755 -d /etc/apt/keyrings
           curl -fsSL "https://download.docker.com/linux/debian/gpg" | gpg --dearmor --yes -o /etc/apt/keyrings/docker.gpg
           chmod a+r /etc/apt/keyrings/docker.gpg
@@ -103,8 +103,12 @@ jobs:
           docker image save -o latest.tar ${{vars.REGISTRY_URL}}/${{ gitea.repository }}:latest
           gzip latest.tar
       
-      - name: Export Artifact
-        uses: softprops/action-gh-release@v2
+      - name: Create Release
+        uses: akkuman/gitea-release-action@v1
         with:
-          files: |
-            latest.tar.gz
+          server_url: http://${{vars.REGISTRY_URL}}
+          name: ${{ gitea.ref_name }}
+          tag_name: ${{ gitea.ref_name }}
+          draft: ""
+          prerelease: ""
+          files: ./latest.tar.gz
