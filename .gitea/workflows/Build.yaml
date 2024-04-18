@@ -6,11 +6,11 @@ on:
   create:
     tags:        
       - '**'
-  push:
-   branches:
-    - 'main'
-   paths:
-    - '.gitea/workflows/Build.yaml'
+  # push:
+  #  branches:
+  #   - 'main'
+  #  paths:
+  #   - '.gitea/workflows/Build.yaml'
 
 jobs:
   registry-build:
@@ -97,18 +97,3 @@ jobs:
         run: |
           docker image ls
           docker buildx imagetools inspect ${{vars.REGISTRY_URL}}/${{ gitea.repository }}:latest
-
-      - name: Export image to tar.gz
-        run: |
-          docker image save -o latest.tar ${{vars.REGISTRY_URL}}/${{ gitea.repository }}:latest
-          gzip latest.tar
-      
-      - name: Create Release
-        uses: akkuman/gitea-release-action@v1
-        with:
-          server_url: http://${{vars.REGISTRY_URL}}
-          name: ${{ gitea.ref_name }}
-          tag_name: ${{ gitea.ref_name }}
-          draft: ""
-          prerelease: ""
-          files: ./latest.tar.gz
