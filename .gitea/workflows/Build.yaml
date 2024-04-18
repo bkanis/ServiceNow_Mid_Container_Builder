@@ -6,11 +6,11 @@ on:
   create:
     tags:        
       - '**'
-  # push:
-  #  branches:
-  #   - 'main'
-  #  paths:
-  #   - '.gitea/workflows/Build.yaml'
+  push:
+   branches:
+    - 'main'
+   paths:
+    - '.gitea/workflows/Build.yaml'
 
 jobs:
   registry-build:
