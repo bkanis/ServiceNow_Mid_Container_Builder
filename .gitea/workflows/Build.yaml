@@ -95,6 +95,7 @@ jobs:
       
       - name: Inspect Image
         run: |
+          docker image ls
           docker buildx imagetools inspect ${{vars.REGISTRY_URL}}/${{ gitea.repository }}:latest
 
       - name: Export image to tar.gz
