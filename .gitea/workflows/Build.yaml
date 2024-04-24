@@ -1,24 +1,17 @@
 name: Build
 
 on:
-  # release:
-  #   types: [published]
   create:
     tags:        
       - '**'
-  # push:
-  #  branches:
-  #   - 'main'
-  #  paths:
-  #   - '.gitea/workflows/Build.yaml'
 
 jobs:
   registry-build:
     env: 
-      RUNNER_TOOL_CACHE: /toolcache # Runner Tool Cache
+      RUNNER_TOOL_CACHE: /toolcache
     runs-on: ${{vars.BUILD_IMAGE}}
     steps:
-      - name: Install Docker
+      - name: Setup Environment
         run: |
           apt-get update -qq >/dev/null
           DEBIAN_FRONTEND=noninteractive apt-get install -y -qq gpg apt-transport-https ca-certificates curl unzip gzip >/dev/null
@@ -56,28 +49,21 @@ jobs:
           username: ${{ gitea.repository_owner }}
           password: ${{ secrets.REGISTRY_PASS  }}
 
-      - name: Docker Metadata
+      - name: Set Image Metadata
         id: meta
         uses: docker/metadata-action@v5
         with:
-          # list of Docker images to use as base name for tags
           images: |
             ${{vars.REGISTRY_URL}}/${{ gitea.repository }}
-          # generate Docker tags based on the following events/attributes
           tags: |
-            type=schedule
-            type=ref,event=branch
-            type=ref,event=pr
-            type=semver,pattern={{version}}
-            type=semver,pattern={{major}}.{{minor}}
-            type=semver,pattern={{major}}
+            # SHA
             type=sha
-            # set latest tag for default branch
+            # Latest (On default branch)
             type=raw,value=latest,enable={{is_default_branch}}
-            # set tag from tag
+            # Tag from Tag
             type=ref,event=tag
 
-      - name: Build and Push to Registry
+      - name: Build and Push Image to Registry
         uses: docker/build-push-action@v5
         with:
           context: .
@@ -87,11 +73,14 @@ jobs:
           cache-from: type=registry,ref=${{ gitea.repository }}:latest
           outputs: type=oci,dest=/tmp/${{ gitea.ref_name }}.tar
       
-      - name: Inspect Image
+      - name: Verify Image
         run: |
           docker image ls
           docker buildx imagetools inspect ${{vars.REGISTRY_URL}}/${{ gitea.repository }}:latest
-          gzip -9 < /tmp/${{ gitea.ref_name }}.tar > /tmp/${{ gitea.ref_name }}.tar.gz
+
+      # - name: Compress Artifacts # Not much gain with Docker images
+      #   run: |
+      #     gzip -9 < /tmp/${{ gitea.ref_name }}.tar > /tmp/${{ gitea.ref_name }}.tar.gz
 
       - name: Create Release
         uses: akkuman/gitea-release-action@v1
@@ -103,4 +92,4 @@ jobs:
           prerelease: ""
           files: |
             ./${{ gitea.ref_name }}.Docker.zip
-            /tmp/${{ gitea.ref_name }}.tar.gz
+            /tmp/${{ gitea.ref_name }}.tar
