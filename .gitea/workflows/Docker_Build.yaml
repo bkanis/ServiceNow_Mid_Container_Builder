@@ -6,8 +6,10 @@ on:
       - '**'
 
 jobs:
-  - name: Docker Build
+  docker-build:
     uses: bkanis/apt-cacher-ng/.gitea/workflows/Docker_Build.yaml@main
+    secrets:
+      GITEA_TOKEN: ${{ secrets.WORKFLOW_CALLER }}
 
   # registry-build:
   #   env: 
