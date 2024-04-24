@@ -6,11 +6,11 @@ on:
   create:
     tags:        
       - '**'
-  push:
-   branches:
-    - 'main'
-   paths:
-    - '.gitea/workflows/Build.yaml'
+  # push:
+  #  branches:
+  #   - 'main'
+  #  paths:
+  #   - '.gitea/workflows/Build.yaml'
 
 jobs:
   registry-build:
@@ -75,6 +75,8 @@ jobs:
             type=sha
             # set latest tag for default branch
             type=raw,value=latest,enable={{is_default_branch}}
+            # set tag from tag
+            type=ref,event=tag
 
       - name: Build and Push to Registry
         uses: docker/build-push-action@v5
