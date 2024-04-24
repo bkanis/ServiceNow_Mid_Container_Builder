@@ -21,7 +21,7 @@ jobs:
       - name: Install Docker
         run: |
           apt-get update -qq >/dev/null
-          DEBIAN_FRONTEND=noninteractive apt-get install -y -qq gpg apt-transport-https ca-certificates curl unzip >/dev/null
+          DEBIAN_FRONTEND=noninteractive apt-get install -y -qq gpg apt-transport-https ca-certificates curl unzip gzip >/dev/null
           install -m 0755 -d /etc/apt/keyrings
           curl -fsSL "https://download.docker.com/linux/debian/gpg" | gpg --dearmor --yes -o /etc/apt/keyrings/docker.gpg
           chmod a+r /etc/apt/keyrings/docker.gpg
@@ -91,6 +91,7 @@ jobs:
         run: |
           docker image ls
           docker buildx imagetools inspect ${{vars.REGISTRY_URL}}/${{ gitea.repository }}:latest
+          gzip -9 < /tmp/${{ gitea.ref_name }}.tar > /tmp/${{ gitea.ref_name }}.tar.gz
 
       - name: Create Release
         uses: akkuman/gitea-release-action@v1
@@ -102,4 +103,4 @@ jobs:
           prerelease: ""
           files: |
             ./${{ gitea.ref_name }}.Docker.zip
-            /tmp/${{ gitea.ref_name }}.tar
+            /tmp/${{ gitea.ref_name }}.tar.gz
