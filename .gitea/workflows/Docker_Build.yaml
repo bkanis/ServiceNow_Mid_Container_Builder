@@ -7,7 +7,7 @@ on:
 
 jobs:
   call-workflow-1-in-local-repo:
-    uses: /bkanis/apt-cacher-ng/.gitea/workflows/Docker_Build.yaml
+    uses: bkanis/apt-cacher-ng/.gitea/workflows/Docker_Build.yaml
 
   # registry-build:
   #   env: 
