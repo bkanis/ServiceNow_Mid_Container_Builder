@@ -35,9 +35,8 @@ jobs:
      
       - name: Get Zip
         run: |
-          curl -o ./build.zip "${{vars.INSTALL_URL}}"
-          unzip -o ./build.zip
-          rm ./build.zip
+          curl -o ./${{ gitea.ref_name }} "${{vars.INSTALL_URL}}"
+          unzip -o ./${{ gitea.ref_name }}.zip
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -91,3 +90,13 @@ jobs:
         run: |
           docker image ls
           docker buildx imagetools inspect ${{vars.REGISTRY_URL}}/${{ gitea.repository }}:latest
+
+      - name: Create Release
+        uses: akkuman/gitea-release-action@v1
+        with:
+          server_url: http://${{vars.REGISTRY_URL}}
+          name: ${{ gitea.ref_name }}
+          tag_name: ${{ gitea.ref_name }}
+          draft: ""
+          prerelease: ""
+          files: ./${{ gitea.ref_name }}.zip
