@@ -23,7 +23,7 @@ jobs:
           DEBIAN_FRONTEND=noninteractive apt-get install -y -qq docker-ce docker-ce-cli containerd.io docker-compose-plugin docker-ce-rootless-extras docker-buildx-plugin >/dev/null
           docker info
 
-      - name: Checkout
+      - name: Checkout Repository
         uses: actions/checkout@v4
      
       - name: Get Zip
