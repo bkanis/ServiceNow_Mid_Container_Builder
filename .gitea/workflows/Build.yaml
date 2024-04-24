@@ -16,19 +16,19 @@ jobs:
   registry-build:
     env: 
       RUNNER_TOOL_CACHE: /toolcache # Runner Tool Cache
-    runs-on: my-builder
+    runs-on: bookworm-slim
     steps:
-      # - name: Install Docker
-      #   run: |
-      #     apt-get update -qq >/dev/null
-      #     DEBIAN_FRONTEND=noninteractive apt-get install -y -qq gpg apt-transport-https ca-certificates curl >/dev/null
-      #     install -m 0755 -d /etc/apt/keyrings
-      #     curl -fsSL "https://download.docker.com/linux/debian/gpg" | gpg --dearmor --yes -o /etc/apt/keyrings/docker.gpg
-      #     chmod a+r /etc/apt/keyrings/docker.gpg
-      #     echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian bookworm stable" > /etc/apt/sources.list.d/docker.list
-      #     apt-get update -qq >/dev/null
-      #     DEBIAN_FRONTEND=noninteractive apt-get install -y -qq docker-ce docker-ce-cli containerd.io docker-compose-plugin docker-ce-rootless-extras docker-buildx-plugin >/dev/null
-      #     docker info
+      - name: Install Docker
+        run: |
+          apt-get update -qq >/dev/null
+          DEBIAN_FRONTEND=noninteractive apt-get install -y -qq gpg apt-transport-https ca-certificates curl >/dev/null
+          install -m 0755 -d /etc/apt/keyrings
+          curl -fsSL "https://download.docker.com/linux/debian/gpg" | gpg --dearmor --yes -o /etc/apt/keyrings/docker.gpg
+          chmod a+r /etc/apt/keyrings/docker.gpg
+          echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian bookworm stable" > /etc/apt/sources.list.d/docker.list
+          apt-get update -qq >/dev/null
+          DEBIAN_FRONTEND=noninteractive apt-get install -y -qq docker-ce docker-ce-cli containerd.io docker-compose-plugin docker-ce-rootless-extras docker-buildx-plugin >/dev/null
+          docker info
 
       - name: Checkout
         uses: actions/checkout@v4
