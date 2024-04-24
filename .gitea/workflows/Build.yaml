@@ -21,7 +21,7 @@ jobs:
       - name: Install Docker
         run: |
           apt-get update -qq >/dev/null
-          DEBIAN_FRONTEND=noninteractive apt-get install -y -qq gpg apt-transport-https ca-certificates curl wget unzip >/dev/null
+          DEBIAN_FRONTEND=noninteractive apt-get install -y -qq gpg apt-transport-https ca-certificates curl unzip >/dev/null
           install -m 0755 -d /etc/apt/keyrings
           curl -fsSL "https://download.docker.com/linux/debian/gpg" | gpg --dearmor --yes -o /etc/apt/keyrings/docker.gpg
           chmod a+r /etc/apt/keyrings/docker.gpg
@@ -35,7 +35,7 @@ jobs:
      
       - name: Get Zip
         run: |
-          wget -c ${{vars.INSTALL_URL}} -O ./build.zip
+          curl -o ./build.zip "${{vars.INSTALL_URL}}"
           unzip -o ./build.zip
           rm ./build.zip
 
