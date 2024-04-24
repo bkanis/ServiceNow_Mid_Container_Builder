@@ -16,7 +16,7 @@ jobs:
   registry-build:
     env: 
       RUNNER_TOOL_CACHE: /toolcache # Runner Tool Cache
-    runs-on: bookworm-slim
+    runs-on: ${{vars.BUILD_IMAGE}}
     steps:
       - name: Install Docker
         run: |
