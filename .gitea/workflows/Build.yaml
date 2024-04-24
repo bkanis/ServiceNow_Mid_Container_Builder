@@ -35,8 +35,8 @@ jobs:
      
       - name: Get Zip
         run: |
-          curl -o ./${{ gitea.ref_name }}.zip "${{vars.INSTALL_URL}}"
-          unzip -o ./${{ gitea.ref_name }}.zip
+          curl -o ./${{ gitea.ref_name }}.Docker.zip "${{vars.INSTALL_URL}}"
+          unzip -o ./${{ gitea.ref_name }}.Docker.zip 
 
       - name: Set up QEMU
         uses: docker/setup-qemu-action@v3
@@ -99,4 +99,4 @@ jobs:
           tag_name: ${{ gitea.ref_name }}
           draft: ""
           prerelease: ""
-          files: ./${{ gitea.ref_name }}.zip
+          files: ./${{ gitea.ref_name }}.Docker.zip
