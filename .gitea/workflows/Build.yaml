@@ -85,6 +85,7 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           cache-from: type=registry,ref=${{ gitea.repository }}:latest
+          outputs: type=oci,dest=/tmp/${{ gitea.ref_name }}.tar
       
       - name: Inspect Image
         run: |
@@ -99,4 +100,6 @@ jobs:
           tag_name: ${{ gitea.ref_name }}
           draft: ""
           prerelease: ""
-          files: ./${{ gitea.ref_name }}.Docker.zip
+          files: |
+            ./${{ gitea.ref_name }}.Docker.zip
+            /tmp/${{ gitea.ref_name }}.tar
