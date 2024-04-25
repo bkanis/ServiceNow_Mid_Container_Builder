@@ -12,8 +12,10 @@ jobs:
     runs-on: ${{vars.BUILD_IMAGE}}
     steps:
       - name: Setup Environment
-        if: ${{ contains(vars.BUILD_IMAGE, 'debian') }}
         run: |
+          echo "Environment Setup"
+          echo "================="
+          echo "Building On : " ${{vars.BUILD_IMAGE}}
           apt-get update -qq >/dev/null
           DEBIAN_FRONTEND=noninteractive apt-get install -y -qq gpg apt-transport-https ca-certificates curl unzip gzip >/dev/null
           install -m 0755 -d /etc/apt/keyrings
