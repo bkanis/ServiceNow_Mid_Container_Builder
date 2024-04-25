@@ -36,7 +36,7 @@ jobs:
           BUILD_MONTH=$(echo $BUILD_DATE | cut -d- -f1)
           BUILD_DAY=$(echo $BUILD_DATE | cut -d- -f2)
           BUILD_YEAR=$(echo $BUILD_DATE | cut -d- -f3)
-          BUILD_URL=$(echo "https://install.service-now.com/glide/distribution/builds/package/app-signed/mid-linux-container-recipe/$BUILD_YEAR/$BUILD_MONTH/$BUILD_DAY/mid-linux-container-recipe.${{ gitea.ref_name }}.linux.x86-64.zip")
+          BUILD_URL=$(echo "https://install.service-now.com/glide/distribution/builds/package/app-signed/mid-linux-container-recipe/"$BUILD_YEAR"/"$BUILD_MONTH"/"$BUILD_DAY"/mid-linux-container-recipe.${{ gitea.ref_name }}.linux.x86-64.zip")
           echo "Retrieving : "$BUILD_URL
           curl -o ./${{ gitea.ref_name }}.Docker.zip $BUILD_URL
           unzip -o ./${{ gitea.ref_name }}.Docker.zip 
