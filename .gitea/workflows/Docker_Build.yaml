@@ -33,6 +33,7 @@ jobs:
       - name: Get Zip
         run: |
           BUILD_DATE=${{ gitea.ref_name }} | cut -d_ -f4
+          echo "Build Date : "$BUILD_DATE
           BUILD_MONTH=$(echo $BUILD_DATE | cut -d- -f1)
           BUILD_DAY=$(echo $BUILD_DATE | cut -d- -f2)
           BUILD_YEAR=$(echo $BUILD_DATE | cut -d- -f3)
