@@ -33,7 +33,6 @@ jobs:
           BUILD_DAY=$(echo $BUILD_DATE | cut -d- -f2)
           BUILD_YEAR=$(echo $BUILD_DATE | cut -d- -f3)
           curl -o ./${{ gitea.ref_name }}.Docker.zip "https://install.service-now.com/glide/distribution/builds/package/app-signed/mid-linux-container-recipe/$BUILD_YEAR/$BUILD_MONTH/$BUILD_DAY/mid-linux-container-recipe.${{ gitea.ref_name }}linux.x86-64.zip"
-          curl -o ./${{ gitea.ref_name }}.Docker.zip "${{vars.INSTALL_URL}}"
           unzip -o ./${{ gitea.ref_name }}.Docker.zip 
 
       - name: Set up QEMU
