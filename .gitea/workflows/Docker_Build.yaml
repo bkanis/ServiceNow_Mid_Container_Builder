@@ -66,12 +66,8 @@ jobs:
           images: |
             ${{vars.REGISTRY_URL}}/${{ gitea.repository }}
           tags: |
-            # SHA
-            type=sha
-            # Latest (On default branch)
-            type=raw,value=latest,enable={{is_default_branch}}
-            # Tag from Tag
             type=ref,event=tag
+            type=raw,value=latest,enable={{is_default_branch}}
 
       - name: Build and Push Image to Registry
         uses: docker/build-push-action@v5
