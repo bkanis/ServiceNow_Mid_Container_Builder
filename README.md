@@ -1,4 +1,4 @@
-# (Semi) Automated Moneydance Build
+# (Semi) Automated Mid-Server Build
 
 - Create Tag from instance mid.version system property.
 - https://<instance>.service-now.com/sys_properties_list.do?sysparm_query=name%3Dmid.version&sysparm_view=
