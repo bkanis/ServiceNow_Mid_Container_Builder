@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_rest_message_fn_headers">
+    <sys_rest_message_fn_headers action="DELETE">
+        <name>Content-Type</name>
+        <rest_message_function display_value="Start Build">a5daaf0f93270210531574418bba1048</rest_message_function>
+        <sys_class_name>sys_rest_message_fn_headers</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-07-27 05:01:30</sys_created_on>
+        <sys_id>d2fb2f0f93270210531574418bba10a0</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Content-Type</sys_name>
+        <sys_package display_value="Mid-Server AutoBuild" source="2eb76b0f93e30210531574418bba10d7">2eb76b0f93e30210531574418bba10d7</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Mid-Server AutoBuild">2eb76b0f93e30210531574418bba10d7</sys_scope>
+        <sys_update_name>sys_rest_message_fn_headers_d2fb2f0f93270210531574418bba10a0</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-07-27 05:01:30</sys_updated_on>
+        <value>application/json</value>
+    </sys_rest_message_fn_headers>
+    <sys_update_version action="INSERT_OR_UPDATE">
+        <action>DELETE</action>
+        <application display_value="Mid-Server AutoBuild">2eb76b0f93e30210531574418bba10d7</application>
+        <file_path/>
+        <instance_id>e4c3da0d1b4ef59852a243f4bd4bcbbc</instance_id>
+        <instance_name>dev191942</instance_name>
+        <name>sys_rest_message_fn_headers_d2fb2f0f93270210531574418bba10a0</name>
+        <payload><![CDATA[<?xml version="1.0" encoding="UTF-8"?><record_update table="sys_rest_message_fn_headers"><sys_rest_message_fn_headers action="INSERT_OR_UPDATE"><name>Content-Type</name><rest_message_function display_value="Start Build">a5daaf0f93270210531574418bba1048</rest_message_function><sys_class_name>sys_rest_message_fn_headers</sys_class_name><sys_created_by>admin</sys_created_by><sys_created_on>2024-07-27 05:01:30</sys_created_on><sys_id>d2fb2f0f93270210531574418bba10a0</sys_id><sys_mod_count>0</sys_mod_count><sys_name>Content-Type</sys_name><sys_package display_value="Mid-Server AutoBuild" source="2eb76b0f93e30210531574418bba10d7">2eb76b0f93e30210531574418bba10d7</sys_package><sys_policy/><sys_scope display_value="Mid-Server AutoBuild">2eb76b0f93e30210531574418bba10d7</sys_scope><sys_update_name>sys_rest_message_fn_headers_d2fb2f0f93270210531574418bba10a0</sys_update_name><sys_updated_by>admin</sys_updated_by><sys_updated_on>2024-07-27 05:01:30</sys_updated_on><value>application/json</value></sys_rest_message_fn_headers></record_update>]]></payload>
+        <payload_hash>-1346394343</payload_hash>
+        <record_name>Content-Type</record_name>
+        <reverted_from/>
+        <source>73afb72ef8b2021008dd9cfea425ac6d</source>
+        <source_table>sys_update_set</source_table>
+        <state>previous</state>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-07-27 05:01:30</sys_created_on>
+        <sys_id>154cef8f93270210531574418bba1019</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_recorded_at>190f290bce10000001</sys_recorded_at>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-07-27 05:01:30</sys_updated_on>
+        <type>HTTP Headers</type>
+        <update_guid>194cef8f01270210a6f254c374889e18</update_guid>
+        <update_guid_history>194cef8f01270210a6f254c374889e18:-1346394343</update_guid_history>
+    </sys_update_version>
+    <sys_metadata_delete action="INSERT_OR_UPDATE">
+        <sys_audit_delete/>
+        <sys_class_name>sys_metadata_delete</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-07-27 05:18:42</sys_created_on>
+        <sys_db_object display_value="" name="sys_rest_message_fn_headers">sys_rest_message_fn_headers</sys_db_object>
+        <sys_id>06028301ff2c474881c4325da3c24b90</sys_id>
+        <sys_metadata>d2fb2f0f93270210531574418bba10a0</sys_metadata>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Content-Type</sys_name>
+        <sys_package display_value="Mid-Server AutoBuild" source="2eb76b0f93e30210531574418bba10d7">2eb76b0f93e30210531574418bba10d7</sys_package>
+        <sys_parent/>
+        <sys_policy/>
+        <sys_scope display_value="Mid-Server AutoBuild">2eb76b0f93e30210531574418bba10d7</sys_scope>
+        <sys_scope_delete display_value="">0144b38e49ea456c8dd7f4bfc6c8a931</sys_scope_delete>
+        <sys_update_name>sys_rest_message_fn_headers_d2fb2f0f93270210531574418bba10a0</sys_update_name>
+        <sys_update_version display_value="sys_rest_message_fn_headers_d2fb2f0f93270210531574418bba10a0">154cef8f93270210531574418bba1019</sys_update_version>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-07-27 05:18:42</sys_updated_on>
+    </sys_metadata_delete>
+</record_update>
