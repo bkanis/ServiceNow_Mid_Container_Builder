@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?><record_update sys_domain="global" table="sys_app_module">
+    <sys_app_module action="INSERT_OR_UPDATE">
+        <active>true</active>
+        <application display_value="Mid-Server AutoBuild">873ab3c393e70210531574418bba10f3</application>
+        <assessment/>
+        <device_type/>
+        <filter/>
+        <hint/>
+        <homepage/>
+        <image/>
+        <link_type>DIRECT</link_type>
+        <map_page/>
+        <mobile_title>Create Credentials</mobile_title>
+        <mobile_view_name>Mobile</mobile_view_name>
+        <name/>
+        <order/>
+        <override_menu_roles>false</override_menu_roles>
+        <query>basic_auth_credentials.do?WIZARD:action=follow&amp;sys_action=&amp;sys_id=-1</query>
+        <report/>
+        <require_confirmation>true</require_confirmation>
+        <roles>admin</roles>
+        <sys_class_name>sys_app_module</sys_class_name>
+        <sys_created_by>admin</sys_created_by>
+        <sys_created_on>2024-07-27 06:10:34</sys_created_on>
+        <sys_domain>global</sys_domain>
+        <sys_domain_path>/</sys_domain_path>
+        <sys_id>13cb7b4f93e70210531574418bba1058</sys_id>
+        <sys_mod_count>0</sys_mod_count>
+        <sys_name>Create Credentials</sys_name>
+        <sys_overrides/>
+        <sys_package display_value="Mid-Server AutoBuild" source="2eb76b0f93e30210531574418bba10d7">2eb76b0f93e30210531574418bba10d7</sys_package>
+        <sys_policy/>
+        <sys_scope display_value="Mid-Server AutoBuild">2eb76b0f93e30210531574418bba10d7</sys_scope>
+        <sys_update_name>sys_app_module_13cb7b4f93e70210531574418bba1058</sys_update_name>
+        <sys_updated_by>admin</sys_updated_by>
+        <sys_updated_on>2024-07-27 06:10:34</sys_updated_on>
+        <timeline_page/>
+        <title>Create Credentials</title>
+        <uncancelable>false</uncancelable>
+        <view_name/>
+        <window_name/>
+    </sys_app_module>
+</record_update>

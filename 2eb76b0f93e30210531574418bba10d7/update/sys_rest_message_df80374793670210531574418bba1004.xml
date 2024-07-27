@@ -9,19 +9,19 @@
         <name>Mid-Server AutoBuild</name>
         <oauth2_profile/>
         <protocol_name/>
-        <rest_endpoint>https://gitea.kanis.dev/api/v1/repos/bkanis/snc_mid_server/tags</rest_endpoint>
+        <rest_endpoint>https://&lt;Your git repo main_url&gt;</rest_endpoint>
         <sys_class_name>sys_rest_message</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-07-27 05:20:38</sys_created_on>
         <sys_id>df80374793670210531574418bba1004</sys_id>
-        <sys_mod_count>1</sys_mod_count>
+        <sys_mod_count>3</sys_mod_count>
         <sys_name>Mid-Server AutoBuild</sys_name>
         <sys_package display_value="Mid-Server AutoBuild" source="2eb76b0f93e30210531574418bba10d7">2eb76b0f93e30210531574418bba10d7</sys_package>
         <sys_policy/>
         <sys_scope display_value="Mid-Server AutoBuild">2eb76b0f93e30210531574418bba10d7</sys_scope>
         <sys_update_name>sys_rest_message_df80374793670210531574418bba1004</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-07-27 05:21:14</sys_updated_on>
+        <sys_updated_on>2024-07-27 05:47:26</sys_updated_on>
         <use_basic_auth>false</use_basic_auth>
         <use_mutual_auth>false</use_mutual_auth>
     </sys_rest_message>

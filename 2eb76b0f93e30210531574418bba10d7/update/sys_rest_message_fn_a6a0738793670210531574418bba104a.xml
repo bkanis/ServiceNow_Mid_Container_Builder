@@ -13,20 +13,20 @@
         <oauth2_profile/>
         <protocol_name/>
         <qualified_name>Mid-Server AutoBuild [ Start Build ]</qualified_name>
-        <rest_endpoint/>
+        <rest_endpoint>${repo_host}/api/v1/repos/${repo_user}/${repo}/tags</rest_endpoint>
         <rest_message display_value="Mid-Server AutoBuild">df80374793670210531574418bba1004</rest_message>
         <sys_class_name>sys_rest_message_fn</sys_class_name>
         <sys_created_by>admin</sys_created_by>
         <sys_created_on>2024-07-27 05:21:34</sys_created_on>
         <sys_id>a6a0738793670210531574418bba104a</sys_id>
-        <sys_mod_count>2</sys_mod_count>
+        <sys_mod_count>5</sys_mod_count>
         <sys_name>Start Build</sys_name>
         <sys_package display_value="Mid-Server AutoBuild" source="2eb76b0f93e30210531574418bba10d7">2eb76b0f93e30210531574418bba10d7</sys_package>
         <sys_policy/>
         <sys_scope display_value="Mid-Server AutoBuild">2eb76b0f93e30210531574418bba10d7</sys_scope>
         <sys_update_name>sys_rest_message_fn_a6a0738793670210531574418bba104a</sys_update_name>
         <sys_updated_by>admin</sys_updated_by>
-        <sys_updated_on>2024-07-27 05:25:20</sys_updated_on>
+        <sys_updated_on>2024-07-27 05:46:14</sys_updated_on>
         <use_basic_auth>false</use_basic_auth>
         <use_mid_server/>
         <use_mutual_auth>false</use_mutual_auth>
