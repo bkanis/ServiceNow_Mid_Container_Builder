@@ -1,12 +1,14 @@
 # Automated Mid-Server Build
 
 ## For automated Build :
-- Install "Mid-Server AutoBuild" application from this Repo on the desired instance.
-- Navigate to the "mid.version" system property and update the Descript to "build_now" to start immediately.
-- Builds will be created as instance is upgraded and system property changes.
-##TODO
-- Property page
-- Change endpoint
+1.  Install "Mid-Server AutoBuild" application from this Repo on the desired instance.
+2.  Navigate to Mid-Server AutoBuild > Create Credentials
+    - Create a credentials record with your git user name and api key.
+    - Note the *Name* of the credential record for laster. 
+3.  Navigate to Mid-Server AutoBuild > Properties
+    - Set the correct repo URL
+    - Set Name of Basic auth Credential to Samer as named in Step 2.
+# TODO
 - Some sort of build now button
 
 ## To build Manually from Repo:
