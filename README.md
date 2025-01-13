@@ -7,7 +7,7 @@
     - Note the *Name* of the credential record for laster. 
 3.  Navigate to Mid-Server AutoBuild > Properties
     - Set the correct repo URL
-    - Set Name of Basic auth Credential to Samer as named in Step 2.
+    - Set Name of Basic auth Credential to Same as named in Step 2.
 # TODO
 - Some sort of build now button
 

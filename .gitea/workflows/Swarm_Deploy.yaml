@@ -12,10 +12,8 @@ name: Docker Build
 # ghcr.io/bkanis/sn-mid:sha-3105a29
 
 on:
-  create:
-    tags:        
-      - '**'
-
+  registry_dispatch:
+  
 jobs:
   registry-build:
     env: 
