@@ -1,4 +1,4 @@
-name: Docker Build
+name: Docker Build and Deploy
 
 # // Find a good trigger
 # // SSH to swarm leader
@@ -13,7 +13,7 @@ name: Docker Build
 
 on:
   registry_dispatch:
-  
+
 jobs:
   registry-build:
     env: 
