@@ -3,8 +3,8 @@
 ## For automated Build :
 1.  Install "Mid-Server AutoBuild" application from this Repo on the desired instance.
 2.  Navigate to Mid-Server AutoBuild > Create Credentials
-    - Create a credentials record with your git user name and api key.
-    - Note the *Name* of the credential record for laster. 
+    - Create a credentials record with your git user name and [api key](https://repo.kanis.dev/user/settings/applications).
+    - Note the *Name* of the credential record for later. 
 3.  Navigate to Mid-Server AutoBuild > Properties
     - Set the correct repo URL
     - Set Name of Basic auth Credential to Same as named in Step 2.
