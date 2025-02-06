@@ -2,6 +2,8 @@
 
 ## For automated Build :
 1.  Install "Mid-Server AutoBuild" application from this Repo on the desired instance.
+    - Setup a Basic Auth Credential in Servicenow using your git user name and [api key](https://repo.kanis.dev/user/settings/applications).
+    - Pull this repo with Developer Studio
 2.  Navigate to Mid-Server AutoBuild > Create Credentials
     - Create a credentials record with your git user name and [api key](https://repo.kanis.dev/user/settings/applications).
     - Note the *Name* of the credential record for later. 
