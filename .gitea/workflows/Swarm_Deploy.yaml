@@ -1,5 +1,6 @@
 name: Docker Build and Deploy
 
+To Do:
 # // Find a good trigger
 # // SSH to swarm leader
 # // run docker create service command
@@ -7,9 +8,9 @@ name: Docker Build and Deploy
 # --name mid-container-ahead \
 # -e "MID_INSTANCE_URL=https://dev76369.service-now.com/" \
 # -e "MID_INSTANCE_USERNAME=mid.server" \
-# -e 'MID_INSTANCE_PASSWORD=4&Md-=5HPu#g932}6GlTHhL3W+ecDol4qgFftuv5DG3z;^Ppa#%@{q!T&4D6-#+}WAi2D,4H' \
-# -e "MID_SERVER_NAME=mid-container-ahead" \
-# ghcr.io/bkanis/sn-mid:sha-3105a29
+# -e 'MID_INSTANCE_PASSWORD=<mmid user pass>' \
+# -e "MID_SERVER_NAME=mid-container-1" \
+# ghcr.io/repo/sn-mid:sha-3105a29
 
 on:
   registry_dispatch:
