@@ -1,0 +1,86 @@
+name: Github Build
+
+on:
+  create:
+    tags:        
+      - '**'
+
+jobs:
+  registry-build:
+    env: 
+      RUNNER_TOOL_CACHE: /toolcache
+    runs-on: ${{vars.BUILD_IMAGE}}
+    steps:
+      - name: Setup Environment
+        if: ${{ contains(vars.BUILD_IMAGE, 'bookworm') }}
+        run: |
+          echo "Environment Setup"
+          echo "================="
+          echo "Building On : " ${{vars.BUILD_IMAGE}}
+          apt-get update -qq >/dev/null
+          DEBIAN_FRONTEND=noninteractive apt-get install -qy gpg apt-transport-https ca-certificates curl unzip gzip
+          install -m 0755 -d /etc/apt/keyrings
+          curl -fsSL "https://download.docker.com/linux/debian/gpg" | gpg --dearmor --yes -o /etc/apt/keyrings/docker.gpg
+          chmod a+r /etc/apt/keyrings/docker.gpg
+          echo "deb [arch=amd64 signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/debian bookworm stable" > /etc/apt/sources.list.d/docker.list
+          apt-get update -qq >/dev/null
+          DEBIAN_FRONTEND=noninteractive apt-get install -qy docker-ce docker-ce-cli containerd.io docker-compose-plugin docker-ce-rootless-extras docker-buildx-plugin
+          rm -rf /var/lib/apt/lists/* /tmp/*
+          docker info
+
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+     
+      - name: Get Zip
+        run: |
+          BUILD_DATE=$(echo ${{ gitea.ref_name }} | cut -d_ -f4)
+          BUILD_MONTH=$(echo $BUILD_DATE | cut -d- -f1)
+          BUILD_DAY=$(echo $BUILD_DATE | cut -d- -f2)
+          BUILD_YEAR=$(echo $BUILD_DATE | cut -d- -f3)
+          BUILD_URL=$(echo "https://install.service-now.com/glide/distribution/builds/package/app-signed/mid-linux-container-recipe/"$BUILD_YEAR"/"$BUILD_MONTH"/"$BUILD_DAY"/mid-linux-container-recipe.${{ gitea.ref_name }}.linux.x86-64.zip")
+          echo "Retrieving : "$BUILD_URL
+          curl -o ./mid-linux-container-recipe.${{ gitea.ref_name }}.linux.x86-64.zip $BUILD_URL
+          unzip -o ./mid-linux-container-recipe.${{ gitea.ref_name }}.linux.x86-64.zip
+
+      - name: Set up QEMU
+        uses: docker/setup-qemu-action@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+        with:
+          config-inline: |
+            [registry."${{vars.REGISTRY_URL}}"] 
+              http = true
+              insecure = true 
+
+      - name: Login to Registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{vars.REGISTRY_URL}}
+          username: ${{ gitea.repository_owner }}
+          password: ${{ secrets.REGISTRY_PASS  }}
+
+      - name: Set Image Metadata
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: |
+            ${{vars.REGISTRY_URL}}/${{ gitea.repository }}
+          tags: |
+            type=ref,event=tag
+            type=raw,value=latest,enable={{is_default_branch}}
+
+      - name: Build and Push Image to Registry
+        uses: docker/build-push-action@v6
+        with:
+          context: .
+          push: ${{ gitea.event_name != 'pull_request' }}
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+          cache-from: type=registry,ref=${{ gitea.repository }}:latest
+          outputs: type=oci,dest=/tmp/${{ gitea.ref_name }}.tar
+      
+      - name: Verify Image
+        run: |
+          docker image ls
+          docker buildx imagetools inspect ${{vars.REGISTRY_URL}}/${{ gitea.repository }}:latest
